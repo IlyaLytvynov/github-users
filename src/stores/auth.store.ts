@@ -1,12 +1,17 @@
-import { AuthApi } from '../components/apis/auth.api';
 import { action, observable } from 'mobx';
-import { IProfileDetailed } from '../types';
-import { profileStore } from './profile.store';
-import { config } from '../configs/app.config';
+
 import { commonUiStore } from './common.ui.store';
+import { profileStore } from './profile.store';
+
+import { IProfileDetailed } from '../types';
+import { config } from '../configs/app.config';
+import { AuthApi } from '../components/apis/auth.api';
 
 class AuthStore {
   private authApi: AuthApi;
+
+  @observable
+  isAuthenticated: boolean;
 
   @observable
   loginError: string|undefined;
@@ -16,10 +21,10 @@ class AuthStore {
   }
 
   login(username: string) {
-    console.log(username);
     commonUiStore.load();
     return this.authApi.login(username)
       .then((resp: IProfileDetailed) => {
+        this.authenticate();
         profileStore.setUser(resp);
       })
       .catch((errorResponse: XMLHttpRequest) => {
@@ -36,8 +41,8 @@ class AuthStore {
   }
 
   @action
-  private setLoginError(errText: string|undefined) {
-    this.loginError = errText;
+  authenticate() {
+    this.isAuthenticated = true;
   }
 
   @action
@@ -46,13 +51,19 @@ class AuthStore {
   }
 
   @action
-  private loadFinished(): void {
-    commonUiStore.loadEnd()
+  logout() {
+    this.isAuthenticated = false;
+    profileStore.reset();
   }
 
   @action
-  logout() {
-    profileStore.reset();
+  private setLoginError(errText: string|undefined) {
+    this.loginError = errText;
+  }
+
+  @action
+  private loadFinished(): void {
+    commonUiStore.loadEnd()
   }
 }
 

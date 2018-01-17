@@ -34,7 +34,3 @@ export interface IProfileDetailed extends IProfile {
   created_at: string,
   updated_at: string
 }
-
-
-export type TUsersCollection = Array<IProfile>;
-

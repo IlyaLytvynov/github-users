@@ -5,8 +5,6 @@ import { History } from 'history';
 import { AuthStore, CommonUiStore } from '../../stores';
 import { LoaderComponent } from '../loader/loader.component';
 
-import {config} from '../../configs/app.config';
-
 interface ILoginPageComponentProps {
   history: History;
   authStore?: AuthStore;
@@ -38,7 +36,7 @@ export class LoginPageComponent extends React.Component<ILoginPageComponentProps
     const errorMessage = !isValid ? this.store.loginError : '';
     const {isLoading} = this.uiStore;
     return (
-      <div className='login-page'>
+      <div className='login-page page-content content-wrapper'>
         <LoaderComponent visible={isLoading} />
         <LoginFormComponent
           isValid={isValid}

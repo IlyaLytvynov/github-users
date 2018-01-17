@@ -1,0 +1,23 @@
+.repos-list {
+  margin: 1rem 0;
+  &__title {
+    margin: 0.5rem 0;
+    padding: 0.5em
+  }
+  &__item {
+    padding: 0.5em;
+    transition: background 0.5s;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    &:hover {
+      background: rgba(0,0,0,.3);
+    }
+  }
+  &__languages {
+    color: rgba(0, 83, 255, 1);
+  }
+  &__name {
+    text-transform: uppercase;
+  }
+}

@@ -22,6 +22,12 @@
 .app-header__content > * {
   border: 1px solid blue;
 }
+.logo {
+  width: 150px;
+}
+.logo > img {
+  width: 100%;
+}
 .nav-item__title {
   vertical-align: center;
 }
@@ -32,54 +38,118 @@
   -ms-flex-align: center;
       align-items: center;
 }
-.user {
-  display: -ms-flexbox;
-  display: flex;
-}
-.user__description {
-  padding-left: 4rem;
-}
-.user__description > * {
-  margin: 1rem;
-}
-.user__head {
-  display: -ms-flexbox;
-  display: flex;
-  margin-bottom: 1rem;
-}
-.user__picture {
+.button {
+  background: transparent;
+  box-shadow: 0 3px 5px 1px rgba(0, 0, 0, 0.3);
+  border-radius: 3px;
+  padding: 0.8rem;
+  text-align: center;
   position: relative;
-}
-.user__picture-btn {
-  width: 152px;
-  height: 152px;
-  margin: 0 auto;
-  border: none;
-}
-.user__picture-img {
-  border-radius: 50%;
+  box-sizing: border-box;
+  overflow: hidden;
+  cursor: pointer;
   width: 100%;
-  display: block;
 }
-.user__btn {
+.button .ripple {
+  position: absolute;
+  pointer-events: none;
+  border-radius: 50%;
+  background: #838383;
+  opacity: 0;
+  display: none;
+  -ms-transform-origin: 50% 50%;
+      transform-origin: 50% 50%;
+  -ms-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+}
+.button_submit .ripple {
+  background-color: #2ecb70;
+}
+.button_danger .ripple {
+  background-color: #e84c3e;
+}
+.button:active {
+  box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.3);
+}
+.button .rippleEffect {
+  animation: rippleDrop linear;
+}
+@keyframes rippleDrop {
+  100% {
+    opacity: 0;
+    transform: scale(20);
+  }
+}
+.input {
   position: relative;
+  height: 100%;
 }
-.user__statistic {
-  display: -ms-flexbox;
-  display: flex;
+.input-native-input {
+  border: none;
+  border-bottom: 1px solid #000;
+  width: 100%;
+  box-sizing: border-box;
+  outline: none;
+  padding-bottom: 0.1rem;
+  height: 2rem;
+  font-size: 1rem;
 }
-.user__counts {
-  margin-right: 1.5rem;
-  font-weight: lighter;
+.input-native-input:focus + .input-underline {
+  -ms-transform: scaleX(1);
+      transform: scaleX(1);
+  transition: transform 0.4s;
 }
-.user__counts:last-child {
-  margin-right: 0;
+.input-underline {
+  width: 100%;
+  height: 2px;
+  -ms-transform: scaleX(0);
+      transform: scaleX(0);
+  -ms-transform-origin: 50%;
+      transform-origin: 50%;
+  background: blue;
+  position: absolute;
+  bottom: 0;
+  z-index: 1;
 }
-.user__username {
-  font-size: 2.1rem;
-  font-weight: normal;
-  padding-right: 1rem;
-  vertical-align: bottom;
+.input-label {
+  position: absolute;
+  bottom: 0.1rem;
+  left: 1px;
+  font-size: 1.5rem;
+  transition: transform 0.4s;
+  pointer-events: none;
+  color: #000;
+  -ms-transform-origin: 0 0;
+      transform-origin: 0 0;
+}
+.input.active .input-label {
+  -ms-transform: translate(0, -1.25rem) scale(0.65);
+      transform: translate(0, -1.25rem) scale(0.65);
+}
+.input_not-valid .input-underline {
+  background: red;
+  -ms-transform: scaleX(1);
+      transform: scaleX(1);
+}
+.login-form {
+  position: absolute;
+  width: 450px;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+  box-shadow: 0px 3px 8px 1px rgba(0, 0, 0, 0.27);
+  padding: 1rem;
+}
+.login-form_not-valid {
+  box-shadow: 0px 3px 8px 1px rgba(255, 0, 0, 0.65);
+}
+.input-wrapper {
+  margin: 1rem 0;
+}
+.error-message {
+  font-size: 0.8rem;
+  color: rgba(255, 0, 0, 0.65);
 }
 .profile-header {
   margin: 2rem auto;
@@ -100,6 +170,56 @@
       flex-shrink: 0;
   max-width: 260px;
   padding: 0.5rem;
+}
+.profile {
+  display: -ms-flexbox;
+  display: flex;
+  border: 1px solid red;
+}
+.profile__description {
+  padding-left: 4rem;
+}
+.profile__description > * {
+  margin: 1rem;
+}
+.profile__head {
+  display: -ms-flexbox;
+  display: flex;
+  margin-bottom: 1rem;
+}
+.profile__picture {
+  position: relative;
+}
+.profile__picture-btn {
+  width: 152px;
+  height: 152px;
+  margin: 0 auto;
+  border: none;
+}
+.profile__picture-img {
+  border-radius: 50%;
+  width: 100%;
+  display: block;
+}
+.profile__btn {
+  position: relative;
+}
+.profile__statistic {
+  display: -ms-flexbox;
+  display: flex;
+}
+.profile__counts {
+  margin-right: 1.5rem;
+  font-weight: lighter;
+}
+.profile__counts:last-child {
+  margin-right: 0;
+}
+.profile__username {
+  font-size: 2.1rem;
+  font-weight: normal;
+  padding-right: 1rem;
+  vertical-align: bottom;
 }
 /*! normalize.css v7.0.0 | MIT License | github.com/necolas/normalize.css */
 
@@ -559,8 +679,7 @@ html {
 }
 body {
   height: 100%;
-  min-height: 99%;
-  background: yellow;
+  min-height: 100%;
 }
 body,
 ul,
@@ -586,6 +705,9 @@ a {
 }
 .text_bold {
   font-weight: bolder;
+}
+input {
+  font-family: 'Roboto', sans-serif;
 }
 .content-wrapper {
   max-width: 935px;

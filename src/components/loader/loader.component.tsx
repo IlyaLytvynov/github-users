@@ -3,12 +3,10 @@ import * as React from 'react';
 interface ILoaderProps {
   visible: boolean;
 }
-const LoaderComponent: React.SFC<ILoaderProps> = (props: ILoaderProps) => {
+export const LoaderComponent: React.SFC<ILoaderProps> = (props: ILoaderProps) => {
   if(props.visible) {
-    return <div>Loading...</div>
+    return <div className='loader'>Loading...</div>
   }
 
   return null;
 };
-
-export {LoaderComponent};

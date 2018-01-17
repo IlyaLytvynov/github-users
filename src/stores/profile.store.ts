@@ -1,7 +1,7 @@
 import { action, computed, IObservableArray, observable } from 'mobx';
 
 import { ProfileApi } from '../components/apis/profile.api';
-import { IProfileDetailed, IReposResponse } from '../types';
+import { IProfileDetailed, IRepo } from '../types';
 
 
 class ProfileStore {
@@ -11,7 +11,7 @@ class ProfileStore {
   user: IProfileDetailed|undefined;
 
   @observable
-  repos: Array<IReposResponse> = [];
+  repos: Array<IRepo> = [];
 
   constructor(api: ProfileApi) {
     this.api = api;
@@ -20,13 +20,17 @@ class ProfileStore {
 
   @action
   setUser(user: IProfileDetailed|undefined): void {
-    console.log(user);
     this.user = user;
   }
 
   @action
-  setRepos(resp: Array<IReposResponse>): void {
+  setRepos(resp: Array<IRepo>): void {
     this.repos = resp;
+  }
+
+  @action
+  getRepo(id: number) {
+    return this.repos.filter((repo: IRepo) => repo.id === id)[0];
   }
 
   loadRepos(): void {
@@ -35,6 +39,7 @@ class ProfileStore {
         .then(this.setRepos.bind(this));
     }
   }
+
   @action
   reset() {
     this.setUser(undefined);

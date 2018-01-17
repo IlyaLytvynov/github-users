@@ -4,6 +4,9 @@ class CommonUiStore {
   @observable
   isLoading: boolean = false;
 
+  @observable
+  modalVisible: boolean = false;
+
   @action
   load() {
     this.isLoading = true;
@@ -13,6 +16,17 @@ class CommonUiStore {
   loadEnd() {
     this.isLoading = false;
   }
+
+  @action
+  openModal() {
+    this.modalVisible = true;
+  }
+
+  @action
+  closeModal() {
+    this.modalVisible = false;
+  }
+
 }
 
 const commonUiStore = new CommonUiStore();

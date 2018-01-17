@@ -11,19 +11,6 @@
   overflow: hidden;
   cursor: pointer;
   width: 100%;
-  &.submit {
-    .ripple {
-      background-color: #2ecb70;
-    }
-  }
-  &.danger {
-    .ripple {
-      background-color: #e84c3e;
-    }
-  }
-  &:active {
-    box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.3);
-  }
   .ripple {
     position: absolute;
     pointer-events: none;
@@ -33,6 +20,20 @@
     display: none;
     transform-origin: 50% 50%;
     transform: translate(-50%, -50%);
+  }
+
+  &_submit {
+    .ripple {
+      background-color: #2ecb70;
+    }
+  }
+  &_danger {
+    .ripple {
+      background-color: #e84c3e;
+    }
+  }
+  &:active {
+    box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.3);
   }
 
   .rippleEffect {

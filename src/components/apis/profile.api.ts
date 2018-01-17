@@ -1,15 +1,9 @@
 import { ApiBase } from './api.base';
-import { IProfileDetailed,IReposResponse } from '../../types';
-
-import { config } from '../../configs/app.config';
+import { IRepo } from '../../types';
 
 class ProfileApi extends ApiBase{
-  getProfileDetails(url: string): Promise<IProfileDetailed> {
-    return this.fetch<IProfileDetailed>(url);
-  }
-
-  loadRepos(url: string): Promise<IReposResponse> {
-    return this.fetch<IReposResponse>(url);
+  loadRepos(url: string): Promise<IRepo> {
+    return this.fetch<IRepo>(url);
   }
 }
 

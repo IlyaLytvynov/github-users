@@ -1,15 +1,19 @@
 import * as React from 'react';
+import * as classnames from 'classnames';
+import { observer } from 'mobx-react';
+
 import { Component, SyntheticEvent, KeyboardEvent } from 'react';
 
 import './input.less';
-import { observer } from 'mobx-react';
 
 export interface IInputComponentProps {
   placeholder: string;
   onInput: (text: string) => void;
+  value: string;
+  classNames?: string;
+  notValid?: boolean;
   onFocus?: () => void;
   onSubmit?: () => void;
-  value: string;
 }
 
 interface IState {
@@ -28,11 +32,11 @@ export class InputComponent extends Component<IInputComponentProps, IState> {
   }
 
   render() {
-    let classNames = 'input ';
-
-    if (this.props.value.length > 0) {
-      classNames = classNames + ' active';
-    }
+    let classNames = classnames(
+      'input',
+      {'input_not-valid': this.props.notValid === true},
+      {active: this.props.value.length > 0}
+    );
 
     return (
       <div className={classNames}>

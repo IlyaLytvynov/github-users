@@ -1,4 +1,5 @@
 import * as React from 'react';
+import * as classnames from 'classnames';
 import { Component, MouseEvent } from 'react';
 
 import './button.less';
@@ -48,16 +49,8 @@ export class ButtonComponent extends Component<IInputComponentProps, IState> {
   }
 
   render() {
-    let classNames = 'button ';
-    let rippleClasses = 'ripple';
-
-    if (this.props.classNames) {
-      classNames = classNames + this.props.classNames;
-    }
-
-    if (this.state.animated) {
-      rippleClasses += ' rippleEffect';
-    }
+    let classNames = classnames(this.props.classNames, 'button');
+    let rippleClasses = classnames('ripple', {rippleEffect: this.state.animated});
 
     return (
       <button className={classNames}

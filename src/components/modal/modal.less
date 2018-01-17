@@ -1,0 +1,29 @@
+.modal {
+  &__overlay {
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    background: rgba(0,0,0,.5);
+  }
+  &__content {
+    text-align: center;
+    border-radius: 0.5rem;
+    padding: 2rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    min-width: 450px;
+    background: #FFF;
+    min-height: 150px;
+  }
+  &__close-btn {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    cursor: pointer;
+  }
+}

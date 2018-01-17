@@ -11,7 +11,6 @@ abstract class ApiBase {
             const response = JSON.parse(xhr.response);
             resolve(response);
           } else {
-            debugger;
             reject(xhr);
           }
         }
