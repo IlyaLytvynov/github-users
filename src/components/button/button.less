@@ -1,0 +1,51 @@
+@import '../../styles/variables';
+
+.button {
+  background: transparent;
+  box-shadow: 0 3px 5px 1px rgba(0, 0, 0, 0.3);
+  border-radius: 3px;
+  padding: 0.8rem;
+  text-align: center;
+  position: relative;
+  box-sizing: border-box;
+  overflow: hidden;
+  cursor: pointer;
+  width: 100%;
+  &.submit {
+    .ripple {
+      background-color: #2ecb70;
+    }
+  }
+  &.danger {
+    .ripple {
+      background-color: #e84c3e;
+    }
+  }
+  &:active {
+    box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.3);
+  }
+  .ripple {
+    position: absolute;
+    pointer-events: none;
+    border-radius: 50%;
+    background: #838383;
+    opacity: 0;
+    display: none;
+    transform-origin: 50% 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .rippleEffect {
+    animation: rippleDrop linear
+  }
+
+}
+
+@keyframes rippleDrop {
+  100% {
+    opacity: 0;
+    transform: scale(20);
+  }
+}
+
+

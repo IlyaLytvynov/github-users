@@ -1,0 +1,51 @@
+.user {
+  display: flex;
+  &__description {
+    padding-left: 4rem;
+    > * {
+      margin: 1rem;
+    }
+  }
+  &__head {
+    display: flex;
+    margin-bottom: 1rem;
+  }
+  &__picture {
+    position: relative;
+    &-btn {
+      width: 152px;
+      height: 152px;
+      margin: 0 auto;
+      border: none;
+
+    }
+    &-img {
+      border-radius: 50%;
+      width: 100%;
+      display: block;
+    }
+  }
+
+  &__btn {
+    position: relative;
+  }
+
+  &__statistic {
+    display: flex;
+  }
+
+  &__counts {
+    margin-right: 1.5rem;
+    font-weight: lighter;
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+  &__username {
+    font-size: 2.1rem;
+    font-weight: normal;
+    padding-right:1rem;
+    vertical-align: bottom;
+  }
+
+}

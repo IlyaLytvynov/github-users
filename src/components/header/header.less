@@ -1,0 +1,14 @@
+@import '../../styles/variables';
+
+.app-header {
+  background: @app-header-bg;
+  &__content {
+    border: 1px solid green;
+    display: flex;
+    justify-content: space-between;
+    align-content: center;
+    > * {
+      border: 1px solid blue;
+    }
+  }
+}
