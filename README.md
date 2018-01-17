@@ -16,5 +16,3 @@ src
 |- styles - common styles
 |- types - common TS interfaces and custom types
 ```
-
-Для добавления стилей/скриптов создавать отдельные дирректории
