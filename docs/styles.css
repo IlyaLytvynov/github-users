@@ -5,13 +5,11 @@
   height: 100%;
   display: -ms-flexbox;
   display: flex;
-  background: red;
 }
 .app-header {
-  background: #FFF;
+  background: #464646;
 }
 .app-header__content {
-  border: 1px solid green;
   display: -ms-flexbox;
   display: flex;
   -ms-flex-pack: justify;
@@ -19,27 +17,37 @@
   -ms-flex-line-pack: center;
       align-content: center;
 }
-.app-header__content > * {
-  border: 1px solid blue;
-}
 .logo {
-  width: 150px;
+  width: 5.5rem;
+  padding: 0.5rem;
 }
 .logo > img {
+  display: block;
   width: 100%;
 }
-.nav-item__title {
-  vertical-align: center;
-}
-.nav-item > * {
-  height: 100%;
+.nav-item {
   display: -ms-flexbox;
   display: flex;
   -ms-flex-align: center;
       align-items: center;
 }
+.nav-item__title {
+  vertical-align: center;
+}
+.nav-item > a {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+      align-items: center;
+  padding: 0.5rem;
+  color: #fafafa;
+}
+.nav-item > a:hover {
+  border-bottom: 1px solid #fafafa;
+}
 .button {
   background: transparent;
+  border: none;
   box-shadow: 0 3px 5px 1px rgba(0, 0, 0, 0.3);
   border-radius: 3px;
   padding: 0.8rem;
@@ -151,30 +159,11 @@
   font-size: 0.8rem;
   color: rgba(255, 0, 0, 0.65);
 }
-.profile-header {
-  margin: 2rem auto;
-  max-width: 768px;
-}
-.profile-content {
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-pack: center;
-      justify-content: center;
-  -ms-flex-wrap: wrap;
-      flex-wrap: wrap;
-}
-.profile-content__post {
-  -ms-flex-positive: 0;
-      flex-grow: 0;
-  -ms-flex-negative: 0;
-      flex-shrink: 0;
-  max-width: 260px;
-  padding: 0.5rem;
-}
 .profile {
   display: -ms-flexbox;
   display: flex;
-  border: 1px solid red;
+  margin: 1rem 0;
+  padding: 0 0.5rem;
 }
 .profile__description {
   padding-left: 4rem;
@@ -191,10 +180,11 @@
   position: relative;
 }
 .profile__picture-btn {
+  background: transparent;
+  border: none;
   width: 152px;
   height: 152px;
   margin: 0 auto;
-  border: none;
 }
 .profile__picture-img {
   border-radius: 50%;
@@ -220,6 +210,85 @@
   font-weight: normal;
   padding-right: 1rem;
   vertical-align: bottom;
+}
+.repos-list {
+  margin: 1rem 0;
+}
+.repos-list__title {
+  margin: 0.5rem 0;
+  padding: 0.5em;
+}
+.repos-list__item {
+  padding: 0.5em;
+  transition: background 0.5s;
+  cursor: pointer;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: justify;
+      justify-content: space-between;
+}
+.repos-list__item:hover {
+  background: rgba(0, 0, 0, 0.3);
+}
+.repos-list__languages {
+  color: #0053ff;
+}
+.repos-list__name {
+  text-transform: uppercase;
+}
+.modal__overlay {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  left: 0;
+  background: rgba(0, 0, 0, 0.5);
+}
+.modal__content {
+  text-align: center;
+  border-radius: 0.5rem;
+  padding: 2rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+      transform: translate(-50%, -50%);
+  min-width: 450px;
+  background: #FFF;
+  min-height: 150px;
+}
+.modal__close-btn {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  cursor: pointer;
+}
+.repo-details__name {
+  text-transform: uppercase;
+}
+.repo-details__row {
+  margin: 1rem 0;
+}
+.profile-header {
+  margin: 2rem auto;
+  max-width: 768px;
+}
+.profile-content {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-pack: center;
+      justify-content: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+}
+.profile-content__post {
+  -ms-flex-positive: 0;
+      flex-grow: 0;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+  max-width: 260px;
+  padding: 0.5rem;
 }
 /*! normalize.css v7.0.0 | MIT License | github.com/necolas/normalize.css */
 
