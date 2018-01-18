@@ -5,6 +5,7 @@ For using download, and run next commands at project folder:
 3. Go to http://localhost:8080
 ### Using
 At login page enter valid github user name for example ilyaillych (it's mine gh user name)
+Link to example https://ilyalytvynov.github.io/github-users/
 
 ```
 src
