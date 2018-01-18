@@ -1,6 +1,3 @@
-@not-valid-color: rgba(255, 0, 0, 0.65);
-@block-box-shadow: 0px 3px 8px 1px rgba(0, 0, 0, 0.27);
-@block-box-shadow-not-valid: 0px 3px 8px 1px @not-valid-color;
 
 .login-form {
   position: absolute;
@@ -8,10 +5,8 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  box-shadow: @block-box-shadow;
   padding: 1rem;
   &_not-valid {
-    box-shadow: @block-box-shadow-not-valid;
   }
 }
 .input-wrapper {
@@ -20,5 +15,4 @@
 
 .error-message {
   font-size: 0.8rem;
-  color: @not-valid-color;
 }

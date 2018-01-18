@@ -33,27 +33,22 @@ export class LoginFormComponent extends React.Component<IFormComponent, IFormCom
 
   handleSubmit(e: SyntheticEvent<HTMLElement>): void {
     e.preventDefault();
-    this.props.onSubmit(this.state.username);
+    // this.props.onSubmit(this.state.username);
     this.setUserName('');
   }
 
   setUserName(username: string): void {
-    this.setState((state) => {
-      return {
-        ...state,
-        username
-      };
-    });
+    this.setState((state: IFormComponentState) => ({...state, username}));
   }
 
   handleUsernameChange(username: string): void {
-    this.props.onInput && this.props.onInput();
     this.setUserName(username);
   }
 
   render() {
-    const {classNames, isValid} = this.props;
+    const {classNames, isValid, errorMessage} = this.props;
     const computedClassNames = classnames(classNames, isValid ? '' : 'login-form_not-valid', 'login-form');
+    const {username} = this.state;
 
     return (
       <form className={computedClassNames} onSubmit={this.handleSubmit}>
@@ -61,10 +56,10 @@ export class LoginFormComponent extends React.Component<IFormComponent, IFormCom
           <InputComponent placeholder='Name'
                           notValid={!isValid}
                           onFocus={() => this.props.onFocus && this.props.onFocus()}
-                          onInput={this.handleUsernameChange} value={this.state.username}/>
+                          onInput={this.handleUsernameChange} value={username}/>
         </div>
         <div className='input-wrapper error-message'>
-          {this.props.errorMessage}
+          {errorMessage}
         </div>
         <div className='input-wrapper'>
           <ButtonComponent placeholder='Log in' classNames='button_submit' onClick={() => this.handleSubmit}/>

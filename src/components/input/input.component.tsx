@@ -13,6 +13,7 @@ export interface IInputComponentProps {
   classNames?: string;
   notValid?: boolean;
   onFocus?: () => void;
+  onBlur?: () => void;
   onSubmit?: () => void;
 }
 
@@ -22,35 +23,64 @@ interface IState {
 
 @observer
 export class InputComponent extends Component<IInputComponentProps, IState> {
-  private nativeInput: HTMLInputElement | null;
-
   constructor(props: IInputComponentProps) {
     super(props);
     this.setTextValue = this.setTextValue.bind(this);
     this.onInput = this.onInput.bind(this);
     this.onKeyPress = this.onKeyPress.bind(this);
+    this.onFocus = this.onFocus.bind(this);
+    this.onBlur = this.onBlur.bind(this);
+  }
+
+  toggleActive(isActive: boolean): void {
+    this.setState((state: IState) => {
+      return {
+        ...state,
+        isActive
+      };
+    });
+  }
+
+  onFocus() {
+    this.toggleActive(true);
+    this.props.onFocus && this.props.onFocus();
+  }
+
+  onBlur() {
+    if (this.props.value.length === 0) {
+      this.toggleActive(false);
+    }
+    this.props.onBlur && this.props.onBlur();
+  }
+
+  componentWillMount() {
+    this.state = {
+      isActive: this.props.value.length > 0
+    }
+  }
+
+  componentWillReceiveProps(nextProps: IInputComponentProps) {
+    const isActive = nextProps.value.length > 0;
+    this.toggleActive(isActive);
   }
 
   render() {
     let classNames = classnames(
       'input',
       {'input_not-valid': this.props.notValid === true},
-      {active: this.props.value.length > 0}
+      {active: this.state.isActive}
     );
 
     return (
       <div className={classNames}>
-        <div className='input-label'>{this.props.placeholder}</div>
         <input className='input-native-input'
                onKeyPress={this.onKeyPress}
                onInput={this.onInput}
-               onFocus={() => this.props.onFocus && this.props.onFocus()}
+               onFocus={this.onFocus}
+               onBlur={this.onBlur}
                value={this.props.value}
-               ref={(input) => {
-                 this.nativeInput = input;
-               }}
                type='text'/>
-        <div className='input-underline'></div>
+        <label className='input-label'>{this.props.placeholder}</label>
       </div>
     );
   }

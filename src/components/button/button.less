@@ -3,7 +3,6 @@
 .button {
   background: transparent;
   border: none;
-  box-shadow: 0 3px 5px 1px rgba(0, 0, 0, 0.3);
   border-radius: 3px;
   padding: 0.8rem;
   text-align: center;
@@ -12,35 +11,22 @@
   overflow: hidden;
   cursor: pointer;
   width: 100%;
-  .ripple {
-    position: absolute;
-    pointer-events: none;
-    border-radius: 50%;
-    background: #838383;
-    opacity: 0;
-    display: none;
-    transform-origin: 50% 50%;
-    transform: translate(-50%, -50%);
-  }
-
+  background: none;
+  transition: background-color @default-transition-duration;
   &_submit {
-    .ripple {
-      background-color: #2ecb70;
+    &:hover {
+      background-color: rgba(47, 190, 81, 0.59);
     }
   }
   &_danger {
-    .ripple {
-      background-color: #e84c3e;
-    }
+    background-color: #9f301b;
+    background-image: linear-gradient(-180deg, #cb6050 0%, #77261a 90%);
+    background-position: 0 -0.5em;
+    border-color: rgba(27,31,35,0.5)
   }
   &:active {
     box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.3);
   }
-
-  .rippleEffect {
-    animation: rippleDrop linear
-  }
-
 }
 
 @keyframes rippleDrop {
