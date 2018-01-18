@@ -7,7 +7,9 @@
   display: flex;
 }
 .app-header {
-  background: #464646;
+  background: #25292f;
+  color: #c8c9cb;
+  padding: 0.8rem 0;
 }
 .app-header__content {
   display: -ms-flexbox;
@@ -19,11 +21,16 @@
 }
 .logo {
   width: 5.5rem;
-  padding: 0.5rem;
-}
-.logo > img {
   display: block;
-  width: 100%;
+  height: 100%;
+  -ms-transform: translateY(0.1rem);
+      transform: translateY(0.1rem);
+}
+.logo > svg {
+  display: block;
+  fill: #FFF;
+  width: 2rem;
+  height: 2rem;
 }
 .nav-item {
   display: -ms-flexbox;
@@ -40,15 +47,11 @@
   -ms-flex-align: center;
       align-items: center;
   padding: 0.5rem;
-  color: #fafafa;
-}
-.nav-item > a:hover {
-  border-bottom: 1px solid #fafafa;
+  color: #c8c9cb;
 }
 .button {
   background: transparent;
   border: none;
-  box-shadow: 0 3px 5px 1px rgba(0, 0, 0, 0.3);
   border-radius: 3px;
   padding: 0.8rem;
   text-align: center;
@@ -57,30 +60,20 @@
   overflow: hidden;
   cursor: pointer;
   width: 100%;
+  background: none;
+  transition: background-color 0.5s;
 }
-.button .ripple {
-  position: absolute;
-  pointer-events: none;
-  border-radius: 50%;
-  background: #838383;
-  opacity: 0;
-  display: none;
-  -ms-transform-origin: 50% 50%;
-      transform-origin: 50% 50%;
-  -ms-transform: translate(-50%, -50%);
-      transform: translate(-50%, -50%);
+.button_submit:hover {
+  background-color: rgba(47, 190, 81, 0.59);
 }
-.button_submit .ripple {
-  background-color: #2ecb70;
-}
-.button_danger .ripple {
-  background-color: #e84c3e;
+.button_danger {
+  background-color: #9f301b;
+  background-image: linear-gradient(-180deg, #cb6050 0%, #77261a 90%);
+  background-position: 0 -0.5em;
+  border-color: rgba(27, 31, 35, 0.5);
 }
 .button:active {
   box-shadow: 0 1px 3px 1px rgba(0, 0, 0, 0.3);
-}
-.button .rippleEffect {
-  animation: rippleDrop linear;
 }
 @keyframes rippleDrop {
   100% {
@@ -94,12 +87,13 @@
 }
 .input-native-input {
   border: none;
-  border-bottom: 1px solid #000;
+  border-bottom: 1px solid #9e9e9e;
   width: 100%;
   box-sizing: border-box;
   outline: none;
   padding-bottom: 0.1rem;
   height: 2rem;
+  margin-bottom: 1.25rem;
   font-size: 1rem;
 }
 .input-native-input:focus + .input-underline {
@@ -107,32 +101,27 @@
       transform: scaleX(1);
   transition: transform 0.4s;
 }
-.input-underline {
-  width: 100%;
-  height: 2px;
-  -ms-transform: scaleX(0);
-      transform: scaleX(0);
-  -ms-transform-origin: 50%;
-      transform-origin: 50%;
-  background: blue;
-  position: absolute;
-  bottom: 0;
-  z-index: 1;
-}
 .input-label {
+  color: #9e9e9e;
   position: absolute;
-  bottom: 0.1rem;
-  left: 1px;
-  font-size: 1.5rem;
-  transition: transform 0.4s;
+  top: 0;
+  left: 0;
+  height: 100%;
+  font-size: 1rem;
+  cursor: text;
+  transition: transform 0.2s ease-out;
+  -ms-transform-origin: 0% 100%;
+      transform-origin: 0% 100%;
+  text-align: initial;
+  -ms-transform: translateY(12px);
+      transform: translateY(12px);
   pointer-events: none;
-  color: #000;
-  -ms-transform-origin: 0 0;
-      transform-origin: 0 0;
 }
 .input.active .input-label {
-  -ms-transform: translate(0, -1.25rem) scale(0.65);
-      transform: translate(0, -1.25rem) scale(0.65);
+  -ms-transform: translateY(-14px) scale(0.8);
+      transform: translateY(-14px) scale(0.8);
+  -ms-transform-origin: 0 0;
+      transform-origin: 0 0;
 }
 .input_not-valid .input-underline {
   background: red;
@@ -146,18 +135,13 @@
   left: 50%;
   -ms-transform: translate(-50%, -50%);
       transform: translate(-50%, -50%);
-  box-shadow: 0px 3px 8px 1px rgba(0, 0, 0, 0.27);
   padding: 1rem;
-}
-.login-form_not-valid {
-  box-shadow: 0px 3px 8px 1px rgba(255, 0, 0, 0.65);
 }
 .input-wrapper {
   margin: 1rem 0;
 }
 .error-message {
   font-size: 0.8rem;
-  color: rgba(255, 0, 0, 0.65);
 }
 .profile {
   display: -ms-flexbox;
@@ -781,4 +765,5 @@ input {
 .content-wrapper {
   max-width: 935px;
   margin: 0 auto;
+  padding: 0 0.5rem;
 }
