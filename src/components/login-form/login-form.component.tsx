@@ -21,8 +21,8 @@ export interface IFormComponentState {
 }
 
 export class LoginFormComponent extends React.Component<IFormComponent, IFormComponentState> {
-  constructor() {
-    super();
+  constructor(props: IFormComponent) {
+    super(props);
     this.state = {
       username: ''
     };

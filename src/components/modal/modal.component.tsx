@@ -10,8 +10,8 @@ interface IModalComponentProps {
 }
 
 export class ModalComponent extends React.Component<IModalComponentProps> {
-  constructor() {
-    super();
+  constructor(props: IModalComponentProps) {
+    super(props);
     this.clickHandler = this.clickHandler.bind(this);
   }
 

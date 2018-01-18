@@ -18,7 +18,7 @@ export class LoginPageComponent extends React.Component<ILoginPageComponentProps
   private uiStore: CommonUiStore;
 
   constructor(props: ILoginPageComponentProps) {
-    super();
+    super(props);
     this.onSubmit = this.onSubmit.bind(this);
     this.store = props.authStore!;
     this.uiStore = props.commonUiStore!;

@@ -24,8 +24,8 @@ interface IState {
 export class InputComponent extends Component<IInputComponentProps, IState> {
   private nativeInput: HTMLInputElement | null;
 
-  constructor() {
-    super();
+  constructor(props: IInputComponentProps) {
+    super(props);
     this.setTextValue = this.setTextValue.bind(this);
     this.onInput = this.onInput.bind(this);
     this.onKeyPress = this.onKeyPress.bind(this);

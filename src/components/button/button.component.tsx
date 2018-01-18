@@ -29,8 +29,8 @@ export class ButtonComponent extends Component<IInputComponentProps, IState> {
   private _timeOut: number = 0;
   private _DURATION = 200; // MS
 
-  constructor() {
-    super();
+  constructor(props: IInputComponentProps) {
+    super(props);
     this.state = {
       animated: false,
       rippleStyles: undefined

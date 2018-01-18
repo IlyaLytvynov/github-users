@@ -15,6 +15,7 @@
   },
   "include": [
     "./src/**/*",
-    "node_modules/awesome-typescript-loader/lib/runtime.d.ts"
+    "node_modules/awesome-typescript-loader/lib/runtime.d.ts",
+    "node_modules/@types/jest/index.d.ts"
   ]
 }

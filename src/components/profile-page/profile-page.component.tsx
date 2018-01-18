@@ -27,7 +27,7 @@ export class ProfilePageComponent extends React.Component<IProfilePageProps, IPr
   private commonUiStore: CommonUiStore;
 
   constructor(props: IProfilePageProps) {
-    super();
+    super(props);
     this.store = props.profileStore!;
     this.commonUiStore = props.commonUiStore!;
     this.onRepoClick = this.onRepoClick.bind(this);
