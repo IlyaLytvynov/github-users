@@ -33,7 +33,7 @@ export class LoginFormComponent extends React.Component<IFormComponent, IFormCom
 
   handleSubmit(e: SyntheticEvent<HTMLElement>): void {
     e.preventDefault();
-    // this.props.onSubmit(this.state.username);
+    this.props.onSubmit(this.state.username);
     this.setUserName('');
   }
 

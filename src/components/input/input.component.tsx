@@ -19,6 +19,7 @@ export interface IInputComponentProps {
 
 interface IState {
   isActive: boolean;
+  isFocused: boolean;
 }
 
 @observer
@@ -41,8 +42,17 @@ export class InputComponent extends Component<IInputComponentProps, IState> {
     });
   }
 
+  toggleFocus(isFocused: boolean) {
+    this.setState((state: IState) => {
+      return {
+        ...state,
+        isFocused
+      };
+    });
+  }
   onFocus() {
     this.toggleActive(true);
+    this.toggleFocus(true);
     this.props.onFocus && this.props.onFocus();
   }
 
@@ -50,17 +60,20 @@ export class InputComponent extends Component<IInputComponentProps, IState> {
     if (this.props.value.length === 0) {
       this.toggleActive(false);
     }
+    this.toggleFocus(false);
     this.props.onBlur && this.props.onBlur();
   }
 
   componentWillMount() {
     this.state = {
-      isActive: this.props.value.length > 0
+      isActive: this.props.value.length > 0,
+      isFocused: false
     }
   }
 
   componentWillReceiveProps(nextProps: IInputComponentProps) {
-    const isActive = nextProps.value.length > 0;
+    debugger;
+    const isActive = nextProps.value.length > 0 || this.state.isFocused;
     this.toggleActive(isActive);
   }
 
