@@ -15,7 +15,7 @@ export class ModalComponent extends React.Component<IModalComponentProps> {
     this.clickHandler = this.clickHandler.bind(this);
   }
 
-  clickHandler() {
+  clickHandler(): void {
     this.props.onClick();
   }
   render() {

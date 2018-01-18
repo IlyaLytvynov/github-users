@@ -1,6 +1,7 @@
 const config = {
   apiUrl: 'https://api.github.com',
-  appToken: '922593c4ac91a0d74e35c2a1c948ac65bc815287',
+  clientId: '3ed5793d29c88a57fbd3',
+  clientSecret: 'eed744cc38338b9454b470efabf61bbbd2f1b487',
   errorMessage: 'Login failed, please provide valid github user name'
 };
 

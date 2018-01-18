@@ -37,11 +37,11 @@ export class ProfilePageComponent extends React.Component<IProfilePageProps, IPr
     }
   }
 
-  componentDidMount() {
+  componentDidMount(): void {
     this.store.loadRepos();
   }
 
-  onRepoClick(id: number) {
+  onRepoClick(id: number): void {
     this.setState((state: IProfilePageState) => {
       const selectedRepo = this.store.getRepo(id);
       return {...state, selectedRepo};
@@ -49,7 +49,7 @@ export class ProfilePageComponent extends React.Component<IProfilePageProps, IPr
     this.commonUiStore.openModal();
   }
 
-  closeModal() {
+  closeModal(): void {
     this.commonUiStore.closeModal();
     this.setState((state: IProfilePageState) => {
       const selectedRepo = undefined;

@@ -29,7 +29,7 @@ class ProfileStore {
   }
 
   @action
-  getRepo(id: number) {
+  getRepo(id: number): IRepo {
     return this.repos.filter((repo: IRepo) => repo.id === id)[0];
   }
 

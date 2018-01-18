@@ -20,7 +20,7 @@ class AuthStore {
     this.authApi = authApi;
   }
 
-  login(username: string) {
+  login(username: string): Promise<void> {
     commonUiStore.load();
     return this.authApi.login(username)
       .then((resp: IProfileDetailed) => {
@@ -41,23 +41,23 @@ class AuthStore {
   }
 
   @action
-  authenticate() {
+  authenticate(): void {
     this.isAuthenticated = true;
   }
 
   @action
-  resetErrors () {
+  resetErrors(): void {
     this.setLoginError(undefined);
   }
 
   @action
-  logout() {
+  logout(): void {
     this.isAuthenticated = false;
     profileStore.reset();
   }
 
   @action
-  private setLoginError(errText: string|undefined) {
+  private setLoginError(errText: string|undefined): void {
     this.loginError = errText;
   }
 

@@ -8,22 +8,22 @@ class CommonUiStore {
   modalVisible: boolean = false;
 
   @action
-  load() {
+  load(): void {
     this.isLoading = true;
   }
 
   @action
-  loadEnd() {
+  loadEnd(): void {
     this.isLoading = false;
   }
 
   @action
-  openModal() {
+  openModal(): void {
     this.modalVisible = true;
   }
 
   @action
-  closeModal() {
+  closeModal(): void {
     this.modalVisible = false;
   }
 

@@ -37,11 +37,11 @@ export class ButtonComponent extends Component<IInputComponentProps, IState> {
     };
   }
 
-  componentWillUnmount() {
+  componentWillUnmount(): void {
     clearTimeout(this._timeOut);
   }
 
-  onClickHandler(e: MouseEvent<HTMLElement>) {
+  onClickHandler(e: MouseEvent<HTMLElement>): void {
     this.animate(e);
     setTimeout(() => {
       this.props.onClick();
@@ -62,7 +62,7 @@ export class ButtonComponent extends Component<IInputComponentProps, IState> {
     );
   }
 
-  private animate(e: MouseEvent<HTMLElement>) {
+  private animate(e: MouseEvent<HTMLElement>): void {
     const nativeEvent = e.nativeEvent;
     const posX = nativeEvent.offsetX;
     const posY = nativeEvent.offsetY;

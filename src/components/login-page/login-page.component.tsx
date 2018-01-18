@@ -25,7 +25,7 @@ export class LoginPageComponent extends React.Component<ILoginPageComponentProps
   }
 
 
-  onSubmit(username: string) {
+  onSubmit(username: string): void {
     this.store.login(username).then(() => {
       this.props.history.replace('/profile');
     });

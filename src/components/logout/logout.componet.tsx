@@ -12,7 +12,7 @@ export interface ILogoutComponentProps {
 @inject('authStore')
 class LogoutComponent extends React.Component<ILogoutComponentProps> {
 
-  componentDidMount() {
+  componentDidMount(): void {
     this.props.authStore!.logout();
     this.props.history.replace('/login');
   }

@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { FormEvent, SyntheticEvent } from 'react';
+import { SyntheticEvent } from 'react';
 
 export interface IFormComponent {
   onSubmit: (state: IFormComponentState) => void;
@@ -20,12 +20,12 @@ export class FormComponent extends React.Component<IFormComponent, IFormComponen
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleSubmit(e: SyntheticEvent<HTMLElement>) {
+  handleSubmit(e: SyntheticEvent<HTMLElement>): void {
     e.preventDefault();
     this.props.onSubmit(this.state);
   }
 
-  handleUsernameChange(e: SyntheticEvent<HTMLInputElement>) {
+  handleUsernameChange(e: SyntheticEvent<HTMLInputElement>): void {
     const username = e.currentTarget.value;
     this.setState((state) => {
       return {...state, username};

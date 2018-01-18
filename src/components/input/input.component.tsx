@@ -55,15 +55,15 @@ export class InputComponent extends Component<IInputComponentProps, IState> {
     );
   }
 
-  private setTextValue(text: string) {
+  private setTextValue(text: string): void {
     this.props.onInput(text);
   }
 
-  private onInput(e: SyntheticEvent<HTMLInputElement>) {
+  private onInput(e: SyntheticEvent<HTMLInputElement>): void {
     this.setTextValue(e.currentTarget.value);
   }
 
-  private onKeyPress(e: KeyboardEvent<HTMLInputElement>) {
+  private onKeyPress(e: KeyboardEvent<HTMLInputElement>): void {
     if (e.charCode === 13 && this.props.onSubmit) {
       this.props.onSubmit();
     }

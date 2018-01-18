@@ -31,13 +31,13 @@ export class LoginFormComponent extends React.Component<IFormComponent, IFormCom
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleSubmit(e: SyntheticEvent<HTMLElement>) {
+  handleSubmit(e: SyntheticEvent<HTMLElement>): void {
     e.preventDefault();
     this.props.onSubmit(this.state.username);
     this.setUserName('');
   }
 
-  setUserName(username: string) {
+  setUserName(username: string): void {
     this.setState((state) => {
       return {
         ...state,
@@ -46,7 +46,7 @@ export class LoginFormComponent extends React.Component<IFormComponent, IFormCom
     });
   }
 
-  handleUsernameChange(username: string) {
+  handleUsernameChange(username: string): void {
     this.props.onInput && this.props.onInput();
     this.setUserName(username);
   }
