@@ -6,11 +6,20 @@ import { Component, SyntheticEvent, KeyboardEvent } from 'react';
 
 import './input.less';
 
+export interface IColors {
+  primary?: string;
+  notValid?: string;
+  placeholder?: string;
+  background?: string;
+  text?: string;
+  active?: string;
+}
+
 export interface IInputComponentProps {
   placeholder: string;
   onInput: (text: string) => void;
   value: string;
-  classNames?: string;
+  colors?: IColors;
   notValid?: boolean;
   onFocus?: () => void;
   onBlur?: () => void;
@@ -26,9 +35,14 @@ interface IState {
 export class InputComponent extends Component<IInputComponentProps, IState> {
   constructor(props: IInputComponentProps) {
     super(props);
+
+    this.state = {
+      isActive: this.props.value.length > 0,
+      isFocused: false
+    };
+
     this.setTextValue = this.setTextValue.bind(this);
     this.onInput = this.onInput.bind(this);
-    this.onKeyPress = this.onKeyPress.bind(this);
     this.onFocus = this.onFocus.bind(this);
     this.onBlur = this.onBlur.bind(this);
   }
@@ -50,6 +64,7 @@ export class InputComponent extends Component<IInputComponentProps, IState> {
       };
     });
   }
+
   onFocus() {
     this.toggleActive(true);
     this.toggleFocus(true);
@@ -64,36 +79,57 @@ export class InputComponent extends Component<IInputComponentProps, IState> {
     this.props.onBlur && this.props.onBlur();
   }
 
-  componentWillMount() {
-    this.state = {
-      isActive: this.props.value.length > 0,
-      isFocused: false
-    }
-  }
-
   componentWillReceiveProps(nextProps: IInputComponentProps) {
-    debugger;
     const isActive = nextProps.value.length > 0 || this.state.isFocused;
     this.toggleActive(isActive);
+  }
+
+  generateColor(): string | undefined {
+    if (!this.props.colors) {
+      return undefined
+    }
+    const {
+      primary,
+      notValid,
+      active
+    } = this.props.colors;
+
+    if (this.state.isActive) {
+      return active
+    }
+
+    if (this.props.notValid) {
+      return notValid
+    }
+
+    return primary;
   }
 
   render() {
     let classNames = classnames(
       'input',
-      {'input_not-valid': this.props.notValid === true},
       {active: this.state.isActive}
     );
+
+
+    const inputStyles = {
+      color: this.generateColor(),
+      borderColor: this.generateColor()
+    };
+    const labelStyles = {color: this.generateColor()};
+
 
     return (
       <div className={classNames}>
         <input className='input-native-input'
-               onKeyPress={this.onKeyPress}
                onInput={this.onInput}
                onFocus={this.onFocus}
                onBlur={this.onBlur}
                value={this.props.value}
-               type='text'/>
-        <label className='input-label'>{this.props.placeholder}</label>
+               type='text'
+               style={inputStyles}
+        />
+        <label className='input-label' style={labelStyles}>{this.props.placeholder}</label>
       </div>
     );
   }
@@ -106,12 +142,4 @@ export class InputComponent extends Component<IInputComponentProps, IState> {
     this.setTextValue(e.currentTarget.value);
   }
 
-  private onKeyPress(e: KeyboardEvent<HTMLInputElement>): void {
-    if (e.charCode === 13 && this.props.onSubmit) {
-      this.props.onSubmit();
-    }
-  }
-
 }
-
-

@@ -48,8 +48,8 @@ export class LoginFormComponent extends React.Component<IFormComponent, IFormCom
   render() {
     const {classNames, isValid, errorMessage} = this.props;
     const computedClassNames = classnames(classNames, isValid ? '' : 'login-form_not-valid', 'login-form');
-    const {username} = this.state;
 
+    const {username} = this.state;
     return (
       <form className={computedClassNames} onSubmit={this.handleSubmit}>
         <div className='input-wrapper'>
@@ -57,9 +57,7 @@ export class LoginFormComponent extends React.Component<IFormComponent, IFormCom
                           notValid={!isValid}
                           onFocus={() => this.props.onFocus && this.props.onFocus()}
                           onInput={this.handleUsernameChange} value={username}/>
-        </div>
-        <div className='input-wrapper error-message'>
-          {errorMessage}
+          <div className='error-message'>{errorMessage}</div>
         </div>
         <div className='input-wrapper'>
           <ButtonComponent placeholder='Log in' classNames='button_submit' onClick={() => this.handleSubmit}/>

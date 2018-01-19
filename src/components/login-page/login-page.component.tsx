@@ -26,6 +26,7 @@ export class LoginPageComponent extends React.Component<ILoginPageComponentProps
 
 
   onSubmit(username: string): void {
+    this.uiStore.load();
     this.store.login(username).then(() => {
       this.props.history.replace('/profile');
     });
@@ -34,10 +35,9 @@ export class LoginPageComponent extends React.Component<ILoginPageComponentProps
   render() {
     const isValid = this.store.loginError === undefined;
     const errorMessage = !isValid ? this.store.loginError : '';
-    const {isLoading} = this.uiStore;
+
     return (
       <div className='login-page page-content content-wrapper'>
-        <LoaderComponent visible={isLoading} />
         <LoginFormComponent
           isValid={isValid}
           onFocus={() => this.store.resetErrors()}

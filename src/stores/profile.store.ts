@@ -1,52 +1,52 @@
-import { action, computed, IObservableArray, observable } from 'mobx';
+import { action, computed, observable } from 'mobx';
 
-import { ProfileApi } from '../components/apis/profile.api';
 import { IProfileDetailed, IRepo } from '../types';
+import { reposStore } from './repos.store';
 
+type TUser = IProfileDetailed|undefined;
 
 class ProfileStore {
-  private api: ProfileApi;
 
   @observable
-  user: IProfileDetailed|undefined;
+  private _user: TUser;
 
-  @observable
-  repos: Array<IRepo> = [];
-
-  constructor(api: ProfileApi) {
-    this.api = api;
+  @computed
+  get selectedRepo(): IRepo|undefined {
+    return reposStore.selectedRepo;
   }
 
+  @computed
+  get repos() {
+    return reposStore.repos;
+  }
+
+  @computed
+  get user(): TUser {
+    return this._user
+  }
+
+  @action
+  selectRepo(id: number) {
+    reposStore.selectRepo(id)
+  }
 
   @action
   setUser(user: IProfileDetailed|undefined): void {
-    this.user = user;
-  }
-
-  @action
-  setRepos(resp: Array<IRepo>): void {
-    this.repos = resp;
-  }
-
-  @action
-  getRepo(id: number): IRepo {
-    return this.repos.filter((repo: IRepo) => repo.id === id)[0];
-  }
-
-  loadRepos(): void {
-    if(this.user !== undefined) {
-      this.api.loadRepos(this.user.repos_url)
-        .then(this.setRepos.bind(this));
-    }
+    this._user = user;
   }
 
   @action
   reset() {
     this.setUser(undefined);
-    this.setRepos([]);
+    reposStore.setRepos([]);
   }
+
+  loadRepos() {
+    return reposStore.loadRepos(this.user!.repos_url);
+  }
+
 }
 
-const profileStore = new ProfileStore(new ProfileApi());
+const profileStore = new ProfileStore();
 
 export {ProfileStore, profileStore}

@@ -2,11 +2,10 @@ import * as  React from 'react';
 import { inject, observer } from 'mobx-react';
 import { History } from 'history';
 
-import { CommonUiStore, ProfileStore } from '../../stores';
+import { CommonUiStore, ProfileStore, reposUiStore } from '../../stores';
 import { ProfileComponent } from '../profile/profile.component';
 import { ReposListComponent } from '../repos-list/repos-list.component';
 import { ModalComponent } from '../modal/modal.component';
-import { IRepo } from '../../types';
 import { RepoDetailsComponent } from '../repo-details/repo-details.component';
 
 import './profile-page.less';
@@ -17,12 +16,9 @@ export interface IProfilePageProps {
   commonUiStore?: CommonUiStore;
 }
 
-export interface IProfilePageState {
-  selectedRepo: IRepo|undefined;
-}
 @inject('profileStore', 'commonUiStore')
 @observer
-export class ProfilePageComponent extends React.Component<IProfilePageProps, IProfilePageState> {
+export class ProfilePageComponent extends React.Component<IProfilePageProps, {}> {
   private store: ProfileStore;
   private commonUiStore: CommonUiStore;
 
@@ -32,35 +28,27 @@ export class ProfilePageComponent extends React.Component<IProfilePageProps, IPr
     this.commonUiStore = props.commonUiStore!;
     this.onRepoClick = this.onRepoClick.bind(this);
     this.closeModal = this.closeModal.bind(this);
-    this.state = {
-      selectedRepo: undefined
-    }
   }
 
   componentDidMount(): void {
+    this.commonUiStore.loadEnd();
     this.store.loadRepos();
   }
 
   onRepoClick(id: number): void {
-    this.setState((state: IProfilePageState) => {
-      const selectedRepo = this.store.getRepo(id);
-      return {...state, selectedRepo};
-    });
+    this.store.selectRepo(id);
     this.commonUiStore.openModal();
   }
 
   closeModal(): void {
     this.commonUiStore.closeModal();
-    this.setState((state: IProfilePageState) => {
-      const selectedRepo = undefined;
-      return {...state, selectedRepo};
-    });
   }
 
   render() {
     const {user, repos} = this.store;
     const {modalVisible} = this.commonUiStore;
-    const {selectedRepo} = this.state;
+    const {selectedRepo} = this.store;
+
     let selectedRepoComponent;
 
     if(selectedRepo !== undefined) {
@@ -74,7 +62,7 @@ export class ProfilePageComponent extends React.Component<IProfilePageProps, IPr
     return (
       <div className='page-content content-wrapper'>
         <ProfileComponent profileData={user}/>
-        <ReposListComponent repos={repos} onClick={this.onRepoClick}/>
+        <ReposListComponent repos={repos} store={reposUiStore} onClick={this.onRepoClick}/>
         <ModalComponent visible={modalVisible} onClick={this.closeModal}>
           {selectedRepoComponent}
         </ModalComponent>

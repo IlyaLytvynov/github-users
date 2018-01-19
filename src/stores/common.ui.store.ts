@@ -1,8 +1,9 @@
 import { action, observable } from 'mobx';
+import { UiBaseStore } from './ui.base.store';
 
-class CommonUiStore {
+class CommonUiStore extends UiBaseStore {
   @observable
-  isLoading: boolean = false;
+  isLoading: boolean = true;
 
   @observable
   modalVisible: boolean = false;
@@ -26,7 +27,6 @@ class CommonUiStore {
   closeModal(): void {
     this.modalVisible = false;
   }
-
 }
 
 const commonUiStore = new CommonUiStore();

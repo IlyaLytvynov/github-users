@@ -5,10 +5,14 @@ import { config } from './header.configs';
 import './header.less';
 import { Logo } from '../logo/logo.component';
 import { NavItemComponent } from '../nav/nav-item.component';
+import {authStore} from '../../stores';
 
 export class HeaderComponent extends React.Component {
   render() {
     const navItems = config.navbarItems.map((navitemConfig: any, i) => {
+      if (navitemConfig.protected && !authStore.isAuthenticated) {
+        return null;
+      }
       return <NavItemComponent key={i} url={navitemConfig.url}>{navitemConfig.title}</NavItemComponent>;
     });
 
