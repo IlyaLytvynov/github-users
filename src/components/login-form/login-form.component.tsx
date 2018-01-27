@@ -24,7 +24,7 @@ export class LoginFormComponent extends React.Component<IFormComponent, IFormCom
   constructor(props: IFormComponent) {
     super(props);
     this.state = {
-      username: ''
+      username: 'ilyalytvynov'
     };
 
     this.handleUsernameChange = this.handleUsernameChange.bind(this);

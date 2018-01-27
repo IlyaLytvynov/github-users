@@ -26,12 +26,13 @@ export class AppContainer extends Component<{}, {}> {
 
   render() {
     const {isLoading} = commonUiStore;
+    const loader = isLoading ? <LoaderComponent /> : null;
     return (
       <Provider {...stores} >
         <HashRouter>
           <div className='app-wrapper'>
             <HeaderComponent/>
-            <LoaderComponent visible={isLoading} />
+            {loader}
             <Switch>
               <Route exact path='/login' render={({...props}) => <LoginPageComponent {...props}/>}/>}/>
               <Route exact path='/profile' render={({...props}) => <ProfilePageComponent {...props} />}/>

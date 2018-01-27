@@ -55,6 +55,7 @@
     "webpack-dev-server": "^2.7.1"
   },
   "dependencies": {
+    "@types/react-transition-group": "^2.0.6",
     "classnames": "^2.2.5",
     "inversify": "^4.9.0",
     "inversify-react": "^0.2.4",
@@ -68,6 +69,7 @@
     "react-dom": "16.2.0",
     "react-router": "^4.2.0",
     "react-router-dom": "^4.2.2",
+    "react-transition-group": "^2.2.1",
     "reflect-metadata": "^0.1.12"
   },
   "jest": {

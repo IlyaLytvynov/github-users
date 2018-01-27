@@ -1,9 +1,11 @@
 import * as React from 'react';
 import { IRepo } from '../../types';
+import { observer } from 'mobx-react';
+
+import { LoaderComponent } from '../loader/loader.component';
+import { ReposUiStore } from '../../stores';
 
 import './repo-list.less';
-import { ReposUiStore } from '../../stores/repos.ui.store';
-import { observer } from 'mobx-react';
 
 interface IReposListProps {
   repos: Array<IRepo>;
@@ -15,7 +17,7 @@ interface IReposListProps {
 
 export const ReposListComponent: React.SFC<IReposListProps> = observer((props: IReposListProps) => {
   if (props.store.isLoading === true) {
-    return <h3>Loading...</h3>
+    return <LoaderComponent />
   }
   if(props.repos.length === 0) {
     return <h3>No one any repos yet...</h3>

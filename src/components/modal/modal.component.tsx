@@ -1,7 +1,8 @@
 import * as React from 'react';
+import * as classnames from 'classnames';
+import { ReactNode, SyntheticEvent } from 'react';
 
 import './modal.less';
-import { ReactNode, SyntheticEvent } from 'react';
 
 interface IModalComponentProps {
   visible: boolean;
@@ -18,9 +19,12 @@ export class ModalComponent extends React.Component<IModalComponentProps> {
   clickHandler(): void {
     this.props.onClick();
   }
+
   render() {
-    if (this.props.visible) {
-      return <div className='modal__overlay' onClick={this.clickHandler}>
+    const classNames = classnames('modal', {'showed': this.props.visible});
+
+    return <div className={classNames}>
+      <div className='modal__overlay showed' onClick={this.clickHandler}>
         <div className='modal__content' onClick={(e: SyntheticEvent<HTMLDivElement>) => {
           e.stopPropagation();
         }}>
@@ -28,8 +32,6 @@ export class ModalComponent extends React.Component<IModalComponentProps> {
           {this.props.children}
         </div>
       </div>
-    }
-
-    return null;
+    </div>
   }
 }
